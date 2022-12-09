@@ -1,0 +1,2 @@
+sqlalchemy_database_uri: 'postgresql://ixgwlmey:dT23fANjBbtH5s_I2bclfbVH3ITPVBcO@rajje.db.elephantsql.com/ixgwlmey'
+sqlalchemy_track_modifications: False
