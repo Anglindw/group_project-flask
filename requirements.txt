@@ -14,6 +14,7 @@ Mako==1.2.4
 MarkupSafe==2.1.1
 psycopg2==2.9.5
 python-dotenv==0.21.0
+PyYAML==6.0
 SQLAlchemy==1.4.44
 Werkzeug==2.2.2
 WTForms==3.0.1
