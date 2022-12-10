@@ -1,0 +1,46 @@
+{% extends 'base.html' %} 
+{% block content %} 
+<head>
+    <title>Our shop</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/shop.css')}}"
+</head>
+
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Our products</h1>
+            <p class="lead fw-normal text-white-50 mb-0">We're sure you will find what you need</p>
+        </div>
+    </div>
+</header>
+
+<div class="item-holder">
+{% for key, value in prods.items() %} 
+<div class="col-lg-4 col-md-6 mb-3">
+    <div class="card me-3 text-center">
+      <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+        data-mdb-ripple-color="light">
+        <img src="{{value['icon']}}"
+          class="w-100" />
+        <a href="#!">
+          <div class="hover-overlay">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </div>
+        </a>
+      </div>
+      <div class="card-body">
+        <a href="" class="text-reset text-decoration-none">
+          <h5 class="card-title mb-3">{{value['name']|title}}</h5>
+        </a>
+        <a href="" class="text-reset text-truncate text-decoration-none">
+          <p>{{value['description']}}</p>
+        </a>
+        <h6 class="mb-3">${{value['price']}}</h6>
+        <a href="/shop/view/{{key}}" class="btn btn-dark w-100">View product</a>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}
+

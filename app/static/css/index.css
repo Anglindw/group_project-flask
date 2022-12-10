@@ -1,0 +1,43 @@
+.text-container {
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: white;
+    margin: auto;
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 55vw;
+    height: 60vh;
+    align-items: center;
+    text-align: center;
+}
+
+.holder {
+    width: 100%;
+}
+
+.title {
+    color: black;
+    font-weight: 500;
+}
+
+.caption {
+    font-weight: 500;
+}
+
+
+@media only screen and (min-width: 375px) and (max-width: 1025px) {
+    .right {
+        display: none
+    }
+
+    .left {
+        width: 100%
+    }
+}
