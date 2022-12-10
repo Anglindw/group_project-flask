@@ -10,12 +10,15 @@ class User(db.Model, UserMixin):
     username =  db.Column(db.String(200), nullable=False, unique=True)
     email = db.Column(db.String(250), nullable=False, unique=True)
     password =  db.Column(db.String(300), nullable=False)
+    admin = db.Column(db.String(3), nullable=False)
+
 
     
-    def __init__(self, username, email, password):
+    def __init__(self, username, email, password, admin):
         self.username = username
         self.email = email
         self.password = generate_password_hash(password)
+        self.admin = admin
 
     def save_to_db(self):
         db.session.add(self)
