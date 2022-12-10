@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user
-from app.auth.forms import UserCreationForm
+from app.auth.forms import UsersCreationForm
 from app.models import Users, db
 from werkzeug.security import check_password_hash
 
@@ -8,7 +8,7 @@ auth = Blueprint('auth', __name__, template_folder='auth_templates')
 
 @auth.route('/sign', methods=['GET', 'POST'])
 def signup():
-    form = UserCreationForm()
+    form = UsersCreationForm()
     if request.method == 'POST':
         if form.validate() and "employee.com" in email:
             username = form.username.data
@@ -18,7 +18,7 @@ def signup():
 
             print(username, email, password,admin)
 
-            user = User(username, email, password, admin)
+            user = Users(username, email, password, admin)
 
             user.save_to_db()
             #return redirect(url_for('auth.login'))
@@ -30,7 +30,7 @@ def signup():
 
             print(username, email, password, admin)
 
-            user = User(username, email, password, admin)
+            user = Users(username, email, password, admin)
 
             user.save_to_db()
 
