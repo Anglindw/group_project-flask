@@ -10,11 +10,17 @@ auth = Blueprint('auth', __name__, template_folder='auth_templates')
 def signup():
     form = UsersCreationForm()
     if request.method == 'POST':
-        if form.validate() and "employee.com" in email:
+        if form.validate():
             username = form.username.data
             email = form.email.data
             password = form.password.data
-            admin = 'Yes'
+
+            if '@employee.com' in email:
+                admin = 'Yes'
+            else:
+                admin = 'No'
+
+
 
             print(username, email, password,admin)
 
@@ -22,17 +28,6 @@ def signup():
 
             user.save_to_db()
             #return redirect(url_for('auth.login'))
-        elif form.validate():
-            username = form.username.data
-            email = form.email.data
-            password = form.password.data
-            admin = 'No'
-
-            print(username, email, password, admin)
-
-            user = Users(username, email, password, admin)
-
-            user.save_to_db()
 
         
     return render_template('sign.html', form=form)
