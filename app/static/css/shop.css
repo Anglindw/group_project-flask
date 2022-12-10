@@ -1,0 +1,36 @@
+.item-holder {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 2rem
+}
+
+.product-item {
+    width: 25.1vw;
+    margin-right: 2vw
+}
+
+.item-img {
+    border-top-left-radius: 15px; 
+    border-top-right-radius: 15px;
+    width: 25vw;
+    height: 20vh
+}
+
+@media only screen and (min-width: 375px) and (max-width: 1025px) {
+    .item-holder {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .product-item {
+        width: 90vw;
+        margin-bottom: 4vh;
+    }
+
+    .item-img {
+        width: 89.5vw;
+    }
+
+}
