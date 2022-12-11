@@ -49,7 +49,7 @@ def login():
                     print("Logged In")
                     login_user(user)
                     print(user)
-                    return redirect(url_for('dex.pokedex'))
+                    return redirect(url_for('auth.login'))
                 else:
                     flash('Wrong Password')
             else:

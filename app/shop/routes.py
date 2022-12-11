@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_required
 from app.models import Items, Cart
+from .forms import AddToCart
+from json
 
 shop = Blueprint('shop', __name__, template_folder='shop_templates')
 
@@ -27,13 +29,40 @@ def view_product(id):
         flash('That product was not found')
         return redirect(url_for('shop.view_shop'))
     
-@shop.route('/shop/cart/add/<int:id>')
+@shop.route('/shop/cart/remove/<int:id>')
+@login_required
+def remove_from_cart(id):
+    product = Items.query.get(id) 
+    cart = Cart.query.get(current_user.id)
+    if product:
+        if cart:
+            cart_item = json.loads(cart.item)
+            # If there is a cart
+            del cart_item[name]
+            cart.item = json.dumps(cart_item)
+            cart.update_db()
+            pass
+        else:
+            # if not cart, return no cart (backdoor)
+            return redirect(url_for('cart.create_cart'))
+            pass
+    else:
+        flash('That product was not found')
+        return redirect(url_for('shop.view_shop'))
+
+@shop.route('/shop/cart/add', methods =['GET','POST'])
 @login_required
 def add_to_cart(id):
     product = Items.query.get(id)
     cart = Cart.query.get(current_user.id)
     if product:
         if cart:
+            form=AddToCart()
+            if request.method =="POST":
+                if form.validate():
+                    first_item = form.name.data
+                    current_list = json.loads(Cart.items)
+
             # If there is a cart 
             pass 
         else:
@@ -42,19 +71,12 @@ def add_to_cart(id):
     else:
         flash('That product was not found')
         return redirect(url_for('shop.view_shop'))
+        
     
-@shop.route('/shop/cart/remove/<int:id>')
-@login_required
-def remove_from_cart(id):
-    product = Items.query.get(id) 
-    cart = Cart.query.get(current_user.id)
-    if product:
-        if cart:
-            # If there is a cart
-            pass
-        else:
-            # if not cart, return no cart (backdoor)
-            pass
-    else:
-        flash('That product was not found')
-        return redirect(url_for('shop.view_shop'))
+@shop.route('/shop/cart/')
+def view_cart():
+    products = Items.query.all() # Fetch all items
+    # Create a DICT to itterate through in Jinja
+        
+    return render_template('checkout.html', products=products)
+    

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-{% if current_user.is_authenticated %} 
+{% if current_user.is_authenticated %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -24,7 +24,7 @@
               <div class="row">
   
                 <div class="col-lg-7">
-                  <h5 class="mb-3"><a href="#!" class="text-body"><i
+                  <h5 class="mb-3"><a href="/shop" class="text-body"><i
                         class="fas me-2"></i>Continue shopping</a></h5>
                   <hr>
   
@@ -34,7 +34,7 @@
                       <p class="mb-0">You have items in your cart</p>
                     </div>
                     <div>
-                        <a type="button" class="btn btn-light" href ="/posts/delete/{{post.id}}">Delete All Items</a>
+                        <a type="button" class="btn btn-light" href ="">Delete All Items</a>
                     </div>
                   </div>
   
@@ -49,7 +49,7 @@
                           </div>
                           <div class="ms-3">
                             <h5>{{name|title}}</h5>
-                            <p class="small mb-0">{{id}}</p>
+                            <p class="small mb-0">{{description}}</p>
                           </div>
                         </div>
                         <div class="d-flex flex-row align-items-center">
@@ -92,59 +92,7 @@
                     </div>
                   </div>
   
-                  <div class="card mb-3">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex flex-row align-items-center">
-                          <div>
-                            <img
-                              src="data:image/webp;base64,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"
-                              class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                          </div>
-                          <div class="ms-3">
-                            <h5>Mountain Dew</h5>
-                            <p class="small mb-0"> 20oz Live Wire</p>
-                          </div>
-                        </div>
-                        <div class="d-flex flex-row align-items-center">
-                          <div style="width: 50px;">
-                            <h5 class="fw-normal mb-0">1</h5>
-                          </div>
-                          <div style="width: 80px;">
-                            <h5 class="mb-0">$2.79</h5>
-                          </div>
-                          <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-  
-                  <div class="card mb-3 mb-lg-0">
-                    <div class="card-body">
-                      <div class="d-flex justify-content-between">
-                        <div class="d-flex flex-row align-items-center">
-                          <div>
-                            <img
-                              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7iuju_oOBC0_Hg21cIM9FRk2z8uo1tvPJzbRywMCHvw&s"
-                              class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                          </div>
-                          <div class="ms-3">
-                            <h5>Quesarito</h5>
-                            <p class="small mb-0">Taco Bell</p>
-                          </div>
-                        </div>
-                        <div class="d-flex flex-row align-items-center">
-                          <div style="width: 50px;">
-                            <h5 class="fw-normal mb-0">1</h5>
-                          </div>
-                          <div style="width: 80px;">
-                            <h5 class="mb-0">$2.59</h5>
-                          </div>
-                          <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                 
   
                 </div>
                 <div class="col-lg-5">
@@ -237,4 +185,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="checkout.js"></script>
 </body>
+{% endif %}
 {% endblock %}
