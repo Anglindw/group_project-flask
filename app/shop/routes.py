@@ -50,6 +50,15 @@ def remove_from_cart(id):
         flash('That product was not found')
         return redirect(url_for('shop.view_shop'))
 
+@shop.route('/shop/cart/delete')
+@login_required
+def empty_cart():
+    cart = Cart.query.all()
+    if cart:
+        cart.delete_from_db()
+    flash(f'Deletion successful. Cart has been updated', 'danger')    
+    return redirect(url_for('shop.view_shop'))
+
 @shop.route('/shop/cart/add', methods =['GET','POST'])
 @login_required
 def add_to_cart(id):
