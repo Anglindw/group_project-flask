@@ -42,13 +42,9 @@ def login():
 
             user = Users.query.filter_by(username=username).first()
 
-            print(username, password)
-
             if user:
                 if check_password_hash(user.password, password):
-                    print("Logged In")
                     login_user(user)
-                    print(user)
                     return redirect(url_for('home'))
                 else:
                     flash('Wrong Password')

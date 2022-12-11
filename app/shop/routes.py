@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_required
 from app.models import Items, Cart
-from .forms import AddToCart
+import json
 
 shop = Blueprint('shop', __name__, template_folder='shop_templates')
 
@@ -35,38 +35,50 @@ def remove_from_cart(id):
     cart = Cart.query.get(current_user.id)
     if product:
         if cart:
-            # cart_item = json.loads(cart.item)
-            # If there is a cart
-            del cart_item[name]
-            # cart.item = json.dumps(cart_item)
+            cart_data = json.loads(cart.items)
+            del cart_data[id]
             cart.update_db()
-            pass
+            return redirect(url_for('cart.view_cart'))
         else:
-            # if not cart, return no cart (backdoor)
-            return redirect(url_for('cart.create_cart'))
-            pass
+            return redirect(url_for('cart.view_cart'))
     else:
         flash('That product was not found')
         return redirect(url_for('shop.view_shop'))
 
-@shop.route('/shop/cart/add', methods =['GET','POST'])
+@shop.route('/shop/cart/add/<int:id>', methods =['GET','POST'])
 @login_required
 def add_to_cart(id):
     product = Items.query.get(id)
     cart = Cart.query.get(current_user.id)
     if product:
         if cart:
-            form=AddToCart()
-            if request.method =="POST":
-                if form.validate():
-                    first_item = form.name.data
-                    # current_list = json.loads(Cart.items)
-
-            # If there is a cart 
-            pass 
+            cart_data = json.loads(cart.items)
+            if product.id in cart_data.keys():
+                cart_data[product.id]['quanity'] += 1
+                cart.items = json.dumps(cart_data)
+                cart.update_db()
+                return render_template('product.html',  name=product.item_name, icon=product.item_icon, description=product.item_description, price=product.item_price, id=product.id)
+            else:
+                cart_data[product.id] = {}
+                cart_data[product.id]['name'] = product.item_name
+                cart_data[product.id]['icon'] = product.item_icon
+                cart_data[product.id]['description'] = product.item_description
+                cart_data[product.id]['price'] = product.item_price
+                cart_data[product.id]['quantity'] = 1
+                cart.items = json.dumps(cart_data)
+                cart.update_db()
+                return render_template('product.html',  name=product.item_name, icon=product.item_icon, description=product.item_description, price=product.item_price, id=product.id)
         else:
-            # if not create, create dict
-            pass
+            cart_data = {}
+            cart_data[product.id] = {}
+            cart_data[product.id]["name"] = product.item_name
+            cart_data[product.id]["icon"] = product.item_icon
+            cart_data[product.id]["description"] = product.item_description
+            cart_data[product.id]['price'] = product.item_price
+            cart_data[product.id]['quantity'] = 1
+            d = Cart(current_user.id, json.dumps(cart_data))
+            d.save_to_db()
+            return render_template('product.html',  name=product.item_name, icon=product.item_icon, description=product.item_description, price=product.item_price, id=product.id)
     else:
         flash('That product was not found')
         return redirect(url_for('shop.view_shop'))
