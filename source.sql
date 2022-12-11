@@ -2,7 +2,8 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(50),
     email VARCHAR(250),
-    password VARCHAR(250)
+    password VARCHAR(500),
+    admin BOOLEAN
 ); 
 
 CREATE TABLE cart (

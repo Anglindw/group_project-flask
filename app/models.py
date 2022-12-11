@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
-class User(db.Model, UserMixin):
+class Users(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username =  db.Column(db.String(50), nullable=False, unique=True)
     email = db.Column(db.String(250), nullable=False, unique=True)

@@ -40,7 +40,7 @@
         {% if not current_user.is_authenticated %}
         <a href="/login" class="btn btn-primary align-items-center me-2 text-decoration-none text-white">Login</a>
         {% else %}
-        <a href="/login" class="align-items-center me-2 text-decoration-none text-dark">Welcome {{current_user.username.title()}}</a>
+        <a href="/login" class="align-items-center me-2 text-decoration-none text-dark">Welcome, {{current_user.username.title()}}</a>
         {% endif %}
     </div>
 </nav>
