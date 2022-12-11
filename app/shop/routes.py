@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_required
 from app.models import Items, Cart
 from .forms import AddToCart
-from json
+# from json
 
 shop = Blueprint('shop', __name__, template_folder='shop_templates')
 
@@ -36,10 +36,10 @@ def remove_from_cart(id):
     cart = Cart.query.get(current_user.id)
     if product:
         if cart:
-            cart_item = json.loads(cart.item)
+            # cart_item = json.loads(cart.item)
             # If there is a cart
             del cart_item[name]
-            cart.item = json.dumps(cart_item)
+            # cart.item = json.dumps(cart_item)
             cart.update_db()
             pass
         else:
@@ -61,7 +61,7 @@ def add_to_cart(id):
             if request.method =="POST":
                 if form.validate():
                     first_item = form.name.data
-                    current_list = json.loads(Cart.items)
+                    # current_list = json.loads(Cart.items)
 
             # If there is a cart 
             pass 

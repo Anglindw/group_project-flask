@@ -35,7 +35,7 @@
     <div class="d-flex align-items-center">
         {% if current_user.is_authenticated %}
         <span class="badge rounded-pill badge-notification bg-primary">1</span>
-        <a href="/cart/{{user_id}}" class="text-reset align-items-center me-4 text-decoration-none text-dark"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a href="shop/cart/{{user_id}}" class="text-reset align-items-center me-4 text-decoration-none text-dark"><i class="fa-solid fa-cart-shopping"></i></a>
         {% endif %}
         {% if not current_user.is_authenticated %}
         <a href="/login" class="btn btn-primary align-items-center me-2 text-decoration-none text-white">Login</a>
