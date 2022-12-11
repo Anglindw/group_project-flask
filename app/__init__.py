@@ -2,7 +2,7 @@ from flask import Flask
 from config import Config
 from config import Config
 from flask_migrate import Migrate
-from .models import db, User
+from .models import db, Users
 from .auth.routes import auth
 from flask_login import LoginManager
 
@@ -24,7 +24,7 @@ for key, value in config['config'].items():
 login_manager = LoginManager()
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(user_id)
+    return Users.query.get(user_id)
 
 # Blue prints
 app.register_blueprint(auth)

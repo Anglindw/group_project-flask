@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_required
 from app.models import Items, Cart
 from .forms import AddToCart
-# from json
 
 shop = Blueprint('shop', __name__, template_folder='shop_templates')
 
