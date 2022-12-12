@@ -1,6 +1,6 @@
 from app import app
-from flask import redirect, render_template, url_for, flash
-from flask_login import current_user, login_required
+from flask import redirect, render_template, url_for, flash, session
+from flask_login import current_user
 from app.models import Cart
 import json
 
@@ -10,13 +10,11 @@ def home():
     if current_user.is_authenticated:
         cart = Cart.query.get(current_user.id)
         if cart:
-            full_cart = json.loads(cart.items)
+            cart_data = json.loads(cart.items)
             total_items = 0
-            for key in full_cart.items():
+            for k in cart_data.items():
                 total_items += 1
-            
-            return render_template('index.html', items=total_items)
+            session['items'] = total_items
         else:
-            return render_template('index.html', items=0)
-    else:
-        return render_template('index.html')
+            session['items'] = 0
+    return render_template('index.html')
