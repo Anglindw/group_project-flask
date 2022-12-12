@@ -44,6 +44,10 @@ class Cart(db.Model, UserMixin):
     def update_db(self):
         db.session.commit()
         
+    def delete_from_db(self):
+        db.session.delete(self)
+        db.session.commit()
+        
 class Items(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     item_name =  db.Column(db.String(100), nullable=False, unique=True)

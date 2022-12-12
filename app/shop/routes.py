@@ -27,22 +27,29 @@ def view_product(id):
     else:
         flash('That product was not found')
         return redirect(url_for('shop.view_shop'))
+
+@shop.route('/shop/cart/removeall')
+@login_required
+def remove_all():
+    cart = Cart.query.get(current_user.id)
+    if cart:
+        cart.delete_from_db()
+        return redirect(url_for('shop.view_shop'))
+    else:
+        return redirect(url_for('shop.view_cart'))
+
     
 @shop.route('/shop/cart/remove/<int:id>')
 @login_required
 def remove_from_cart(id):
-    product = Items.query.get(id) 
     cart = Cart.query.get(current_user.id)
-    if product:
-        if cart:
-            cart_data = json.loads(cart.items)
-            del cart_data[id]
-            cart.update_db()
-            return redirect(url_for('cart.view_cart'))
-        else:
-            return redirect(url_for('cart.view_cart'))
+    if cart:
+        cart_data = json.loads(cart.items)
+        del cart_data[str(id)]
+        cart.items = json.dumps(cart_data)
+        cart.update_db()
+        return redirect(url_for('shop.view_cart'))
     else:
-        flash('That product was not found')
         return redirect(url_for('shop.view_shop'))
 
 @shop.route('/shop/cart/add/<int:id>', methods =['GET','POST'])
@@ -53,8 +60,8 @@ def add_to_cart(id):
     if product:
         if cart:
             cart_data = json.loads(cart.items)
-            if product.id in cart_data.keys():
-                cart_data[product.id]['quanity'] += 1
+            if str(product.id) in cart_data.keys():
+                cart_data[str(product.id)]['quantity'] = cart_data[str(product.id)]['quantity'] + 1
                 cart.items = json.dumps(cart_data)
                 cart.update_db()
                 return render_template('product.html',  name=product.item_name, icon=product.item_icon, description=product.item_description, price=product.item_price, id=product.id)
@@ -84,32 +91,25 @@ def add_to_cart(id):
         return redirect(url_for('shop.view_shop'))
 
 
-
-@shop.route('/shop/cart/', methods =['GET','POST'])
-def view_cart():
-    products = Items.query.all()
-
-    return render_template('checkout.html', products = products)
-
         
     
-# @shop.route('/shop/cart/', methods =['GET','POST'])
-# def view_cart():
-#     products = Items.query.all() # Fetch all items
-#     # Create a DICT to itterate through in Jinja
-#     items = {}
-#     for item in products:
-#         items[item.id] = {}
-#         items[item.id]['name'] = item.item_name
-#         items[item.id]['icon'] = item.item_icon
-#         items[item.id]['description'] = item.item_description
-#         items[item.id]['price'] = item.item_price
-#         items[item.id]['quantity'] = 1
+@shop.route('/shop/cart/', methods =['GET','POST'])
+@login_required
+def view_cart():
+    items = Cart.query.get(current_user.id) # Fetch all items
+    # Create a DICT to itterate through in Jinja
+    cart = json.loads(items.items)
+    if items:
+        total = 0 #: Float
+        items = 0 #: Int
+        for key, value in cart.items():
+            total += value['price']
+            items += 1
+            
+        return render_template('Checkout.html', cart=cart, total=total, items=items)
+    else:
+        return redirect(url_for('shop.view_shop'))
 
-#         cart = Cart(name=item.item_name, icon=item.item_icon, description=item.item_description, price=item.item_price)
-#         Cart.save_to_db(cart)
-        
-#     return render_template('checkout.html', prods=items)
 
 
 
