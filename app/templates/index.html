@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <header class="bg-dark py-5">
+    <header class="bg-primary py-5">
     <div class="container px-5">
         <div class="row gx-5 justify-content-center">
             <div class="col-lg-6">
@@ -18,9 +18,8 @@
                         {% if not current_user.is_authenticated %} 
                         <a class="btn btn-primary btn-lg px-4 me-sm-3" href="/signup">Create account</a>
                         {% else %}
-                        <a href="/account/{{current_user.id}}" class="btn btn-primary btn-lg px-4 me-sm-3">View your account</a>
                         {% endif %}
-                        <a class="btn btn-outline-light btn-lg px-4" href="/shop">View our shop</a>
+                        <a class="btn btn-secondary btn-lg px-4" href="/shop">View Our Shop</a>
                     </div>
                 </div>
             </div>
@@ -31,20 +30,20 @@
 <section class="py-5 border-bottom" id="features">
     <div class="container px-5 my-5">
         <div class="row gx-5">
-            <div class="col-lg-4 mb-5 mb-lg-0">
-                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
-                <h2 class="h4 fw-bolder">Simple payment</h2>
-                <p>Our state of the art payment system makes it easy to get items paid for and delivered in just a few simple steps</p>
+            <div class="col-lg-4">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                <h2 class="h4 fw-bolder">Quality</h2>
+                <p>We focus on getting the best products to you and your family. From our produce to our technology you can count on us to get it done!</p>
             </div>
             <div class="col-lg-4 mb-5 mb-lg-0">
                 <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
-                <h2 class="h4 fw-bolder">Everything you need</h2>
-                <p>We work hard to stock every item you could ever need</p>
+                <h2 class="h4 fw-bolder">Availability</h2>
+                <p>Our employees work hard to stock and ship every item from our store. Regardless of the product we strive to get it to you freaky fast.</p>
             </div>
-            <div class="col-lg-4">
-                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
-                <h2 class="h4 fw-bolder">Payment plans</h2>
-                <p>We use afterpay to allow payments over the course of a term. Don't have the money right now? We got you!</p>
+            <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                <h2 class="h4 fw-bolder">Simple payment</h2>
+                <p>Our state of the art payment system makes it easy to get items paid for and delivered in just a few simple steps.</p>
             </div>
         </div>
     </div>
@@ -61,11 +60,39 @@
                 <!-- Testimonial 1-->
                 <div class="card mb-4">
                     <div class="card-body p-4">
+                        <img src="https://media.istockphoto.com/id/1140391316/vector/five-yellow-stars-customer-product-rating-icon-fow-web-applications-and-websites.jpg?s=612x612&w=0&k=20&c=K_VInFNDXNAQ-BIkog1Joaxa1kfq1sbnHfC2gqh3Vb0="
+                        class="img-fluid rounded-3" style="width: 100px;" alt="Avatar">
                         <div class="d-flex">
                             <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
                             <div class="ms-4">
-                                <p class="mb-1">This shop has all I need and will ever need. Thank you creating such a diverse and simple shop. I will be telling others avout this!</p>
+                                <p class="mb-1">This shop has all I need and will ever need. Thank you creating such a diverse and simple shop. I will only be shopping here from now on!</p>
                                 <div class="small text-muted">- Jordan, State</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <img src="https://media.istockphoto.com/id/1140391316/vector/five-yellow-stars-customer-product-rating-icon-fow-web-applications-and-websites.jpg?s=612x612&w=0&k=20&c=K_VInFNDXNAQ-BIkog1Joaxa1kfq1sbnHfC2gqh3Vb0="
+                        class="img-fluid rounded-3" style="width: 100px;" alt="Avatar">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
+                            <div class="ms-4">
+                                <p class="mb-1">After shopping at this place why would I ever use amazon again? The prices here are incredible!</p>
+                                <div class="small text-muted">- Alex, Price </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-body p-4">
+                        <img src="https://media.istockphoto.com/id/1140391316/vector/five-yellow-stars-customer-product-rating-icon-fow-web-applications-and-websites.jpg?s=612x612&w=0&k=20&c=K_VInFNDXNAQ-BIkog1Joaxa1kfq1sbnHfC2gqh3Vb0="
+                        class="img-fluid rounded-3" style="width: 100px;" alt="Avatar">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-primary fs-1"></i></div>
+                            <div class="ms-4">
+                                <p class="mb-1">If you want quality you came to the right place!</p>
+                                <div class="small text-muted">- Duncan, Register </div>
                             </div>
                         </div>
                     </div>
