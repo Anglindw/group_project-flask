@@ -5,11 +5,11 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/shop.css')}}"
 </head>
 
-<header class="bg-dark py-5">
+<header class="bg-primary py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Our products</h1>
-            <p class="lead fw-normal text-white-50 mb-0">We're sure you will find what you need</p>
+            <h1 class="display-4 fw-bolder">Welcome to Shoppers Way</h1>
+            <p class="lead fw-normal text-white-50 mb-0">For shoppers in search of quality and quantity</p>
         </div>
     </div>
 </header>
@@ -36,7 +36,7 @@
           <p>{{value['description']}}</p>
         </a>
         <h6 class="mb-3">${{value['price']}}</h6>
-        <a href="/shop/view/{{key}}" class="btn btn-dark w-100">View product</a>
+        <a href="/shop/view/{{key}}" class="btn btn-primary w-100">View product</a>
       </div>
     </div>
   </div>

@@ -10,20 +10,20 @@
         <div class="row gx-4 gx-lg-5 align-items-center">
             <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0 item-icon" src="{{icon}}" alt="{{name}}" /></div>
             <div class="col-md-6">
-                <div class="small mb-1">Product ID: {{id}}</div>
-                <h1 class="display-5 fw-bolder">{{name|title}}</h1>
-                <div class="fs-5 mb-5">
+                <div class="small mb-1 text-center">Product ID: {{id}}</div>
+                <h1 class="display-5 fw-bolder text-center">{{name|title}}</h1>
+                <div class="fs-5 mb-5 text-center">
                     <span>${{price}}</span>
                 </div>
-                <p class="lead">{{description}}</p>
-                <div class="d-flex">
+                <p class="lead text-center">{{description}}</p>
+                <div class="d-flex justify-content-center">
                 {% if current_user.is_authenticated %} 
-                <a class="btn btn-outline-dark flex-shrink-0" href="/shop/cart/add/{{id}}">
+                <a class="btn btn-primary btn-default btn-outline-dark flex-shrink-0 w-50 text-light"  href="/shop/cart/add/{{id}}">
                     <i class="bi-cart-fill me-1"></i>
                     Add to cart
                 </a>
                 {% else %} 
-                <a class="btn btn-outline-dark flex-shrink-0" href="/login">
+                <a class="btn btn-primary btn-outline-dark flex-shrink-0" href="/login">
                     <i class="bi-cart-fill me-1"></i>
                     Login to add to cart
                 </a>

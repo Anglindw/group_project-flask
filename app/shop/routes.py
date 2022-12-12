@@ -82,12 +82,39 @@ def add_to_cart(id):
     else:
         flash('That product was not found')
         return redirect(url_for('shop.view_shop'))
+
+
+
+@shop.route('/shop/cart/', methods =['GET','POST'])
+def view_cart():
+    products = Items.query.all()
+
+    return render_template('checkout.html', products = products)
+
         
     
-@shop.route('/shop/cart/')
-def view_cart():
-    products = Items.query.all() # Fetch all items
-    # Create a DICT to itterate through in Jinja
+# @shop.route('/shop/cart/', methods =['GET','POST'])
+# def view_cart():
+#     products = Items.query.all() # Fetch all items
+#     # Create a DICT to itterate through in Jinja
+#     items = {}
+#     for item in products:
+#         items[item.id] = {}
+#         items[item.id]['name'] = item.item_name
+#         items[item.id]['icon'] = item.item_icon
+#         items[item.id]['description'] = item.item_description
+#         items[item.id]['price'] = item.item_price
+#         items[item.id]['quantity'] = 1
+
+#         cart = Cart(name=item.item_name, icon=item.item_icon, description=item.item_description, price=item.item_price)
+#         Cart.save_to_db(cart)
         
-    return render_template('checkout.html', products=products)
+#     return render_template('checkout.html', prods=items)
+
+
+
+
+
+
+
     
