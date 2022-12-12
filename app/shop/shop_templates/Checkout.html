@@ -15,7 +15,7 @@
   </head>
 <section class="h-100 h-custom" style="background-color: #eee;">
     <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-50">
+      <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col">
           <div class="card">
             <div class="card-body p-4">
@@ -59,7 +59,7 @@
                   </div>
   
                   {% for key, value in cart.items() %}
-                  <div class="card mb-3">
+                  <div class="card mb-2">
                     <div class="card-body">
                       <div class="d-flex justify-content-between">
                         <div class="d-flex flex-row align-items-center">
@@ -85,9 +85,8 @@
                       </div>
                     </div>
                   </div>
-                  {% endfor %}
-                </div>
-
+                {% endfor %}
+              </div>
                 <div class="col-lg-5">
                   <div class="card bg-primary text-white rounded-3">
                     <div class="card-body">
@@ -143,7 +142,7 @@
                       <button type="button" class="btn btn-info btn-block btn-lg">
                         <div class="d-flex justify-content-between">
                           <span>${{total}}</span>
-                          <span>Checkout <i class="fas ms-2"></i></span>
+                          <span>Checkout <i class="fas  ms-2"></i></span>
                         </div>
                       </button>
   

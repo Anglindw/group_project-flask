@@ -19,15 +19,6 @@ def view_shop():
         
     return render_template('shop.html', prods=items)
 
-@shop.route('/shop/view/<int:id>')
-def view_product(id):
-    product = Items.query.get(id)
-    if product:
-        return render_template('product.html', name=product.item_name, icon=product.item_icon, description=product.item_description, price=product.item_price, id=product.id)
-    else:
-        flash('That product was not found')
-        return redirect(url_for('shop.view_shop'))
-
 @shop.route('/shop/cart/removeall')
 @login_required
 def remove_all():
@@ -38,6 +29,14 @@ def remove_all():
     else:
         return redirect(url_for('shop.view_cart'))
 
+@shop.route('/shop/view/<int:id>')
+def view_product(id):
+    product = Items.query.get(id)
+    if product:
+        return render_template('product.html', name=product.item_name, icon=product.item_icon, description=product.item_description, price=product.item_price, id=product.id)
+    else:
+        flash('That product was not found')
+        return redirect(url_for('shop.view_shop'))
     
 @shop.route('/shop/cart/remove/<int:id>')
 @login_required
@@ -91,8 +90,6 @@ def add_to_cart(id):
         return redirect(url_for('shop.view_shop'))
 
 
-        
-    
 @shop.route('/shop/cart/', methods =['GET','POST'])
 @login_required
 def view_cart():
@@ -106,15 +103,6 @@ def view_cart():
             total += value['price']
             items += 1
             
-        return render_template('Checkout.html', cart=cart, total=total, items=items)
+        return render_template('Checkout.html', cart=cart, total=round(total, 2), items=items)
     else:
         return redirect(url_for('shop.view_shop'))
-
-
-
-
-
-
-
-
-    
